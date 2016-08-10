@@ -1,39 +1,16 @@
 ---
   - name: Set PHP FPM to listen on TCP instead of socket
-    lineinfile:
-      sudo: yes
-      dest: /etc/php/7.0/fpm/pool.d/www.conf
-      state: present
-      regexp: '^listen = /run/php/php7.0-fpm.sock'
-      line: 'listen = 127.0.0.1:9000'
+    raw: sudo sed -i "s/listen =.*/listen = 127.0.0.1:9000/" /etc/php/7.0/fpm/pool.d/www.conf
 
   - name: Set Permissions on socket - owner
-    lineinfile:
-      sudo: yes
-      dest: /etc/php/7.0/fpm/pool.d/www.conf
-      state: present
-      regexp: '^;?listen.owner'
-      line: 'listen.owner = www-data'
+    raw: sudo sed -i "s/listen\.owner.*/listen.owner = www-data/" /etc/php/7.0/fpm/pool.d/www.conf
 
   - name: Set permissions on socket - group
-    lineinfile:
-      sudo: yes
-      dest: /etc/php/7.0/fpm/pool.d/www.conf
-      state: present
-      regexp: '^;listen.group'
-      line: 'listen.group = www-data'
+    raw: sudo sed -i "s/listen\.group.*/listen.group = www-data/" /etc/php/7.0/fpm/pool.d/www.conf
 
   - name: Set permissions on socket - mode
-    lineinfile:
-      sudo: yes
-      dest: /etc/php/7.0/fpm/pool.d/www.conf
-      state: present
-      regexp: '^;listen.mode'
-      line: 'listen.mode = 0666'
+    raw: sudo sed -i "s/listen\.mode.*/listen.mode = 0666/" /etc/php/7.0/fpm/pool.d/www.conf
+    notify: restart php7.0-fpm
 
   - name: ensure timezone is set in fpm php.ini
-    lineinfile:
-      sudo: yes
-      dest: /etc/php/7.0/fpm/php.ini
-      regexp: 'date.timezone ='
-      line: 'date.timezone = {{ server.timezone }}'
+    lineinfile: "dest=/etc/php/7.0/fpm/php.ini regexp='date.timezone =' line='date.timezone = {{ server.timezone }}'"

@@ -24,7 +24,7 @@ Configure your hosts file
 <server or droplet ip>
 ```
 
-Edit `var/all.yml` to configure your default use [hashed](http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module) sudo password. This will create a new user on the provisioned servers that you can use to gain SSH access. And you can also configure any require extra packages you want in the same file under server -> packages.
+Edit `var/all.yml` to configure your default user [hashed](http://docs.ansible.com/ansible/faq.html#how-do-i-generate-crypted-passwords-for-the-user-module) sudo password. This will create a new user on the provisioned servers that you can use to gain SSH access. And you can also configure any require extra packages you want in the same file under server -> packages.
 
 Run:
 `ansible-playbook provision.yml`
