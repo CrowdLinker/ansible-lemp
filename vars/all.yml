@@ -2,6 +2,7 @@
   server:
     install: '1'
     packages: [ fail2ban, git, vim, htop, acl, ufw]
+    timezone: UTC
 
   nginx:
     install: '1'

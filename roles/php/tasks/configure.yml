@@ -2,7 +2,7 @@
   - stat: path=/etc/php/7.0/fpm/php.ini
     register: phpfpm
 
-  - state: path=/etc/php/7.0/cli/php.ini
+  - stat: path=/etc/php/7.0/cli/php.ini
     register: phpcli
 
   - include: php-fpm.yml
