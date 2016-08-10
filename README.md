@@ -40,3 +40,6 @@ Make sure to have your generated ssh key under your droplet/instance in `~/.ssh/
 `ansible-playbook --syntax-check provision.yml` To test if there is any error (If reconfigured)
 
 `ansible-playbook provision.yml`
+
+## Support/Contribution
+Please feel free to give suggestion or report bug by [creating issue](https://github.com/CrowdLinker/ansible-lemp/issues).
