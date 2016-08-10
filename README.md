@@ -32,7 +32,9 @@ server:
     timezone: UTC
 ```
 
+*Note*
 
+Make sure to have your generated ssh key under your droplet/instance in `~/.ssh/authorized_key`. In order to run setup smoothly. You can follow steps for generating key [here](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/). Every hosting has it's own configuration of adding ssh keys.
 
 ## Run:
 `ansible-playbook --syntax-check provision.yml` To test if there is any error (If reconfigured)
