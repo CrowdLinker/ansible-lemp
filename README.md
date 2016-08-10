@@ -17,7 +17,7 @@ It will also install following software:
 
 ## Usage
 
-Configure your hosts file
+Configure your hosts file:
 
 ```
 [web]
