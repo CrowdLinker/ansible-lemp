@@ -34,6 +34,7 @@ server:
 
 
 
-*Run*:
+## Run:
 `ansible-playbook --syntax-check provision.yml` To test if there is any error (If reconfigured)
+
 `ansible-playbook provision.yml`
