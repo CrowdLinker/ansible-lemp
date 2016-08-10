@@ -1,20 +1,23 @@
 ---
   - name: Set PHP FPM to listen on TCP instead of socket
     lineinfile:
+      sudo: yes
       dest: /etc/php/7.0/fpm/pool.d/www.conf
       state: present
-      regexp: '^;?listen'
+      regexp: '^listen = /run/php/php7.0-fpm.sock'
       line: 'listen = 127.0.0.1:9000'
 
   - name: Set Permissions on socket - owner
     lineinfile:
+      sudo: yes
       dest: /etc/php/7.0/fpm/pool.d/www.conf
       state: present
       regexp: '^;?listen.owner'
-      line: 'listen.owner = www.data'
+      line: 'listen.owner = www-data'
 
   - name: Set permissions on socket - group
     lineinfile:
+      sudo: yes
       dest: /etc/php/7.0/fpm/pool.d/www.conf
       state: present
       regexp: '^;listen.group'
@@ -22,13 +25,15 @@
 
   - name: Set permissions on socket - mode
     lineinfile:
+      sudo: yes
       dest: /etc/php/7.0/fpm/pool.d/www.conf
       state: present
-      regexp: '^;?listen.mode'
-      line: 'liste.mode = 0666'
+      regexp: '^;listen.mode'
+      line: 'listen.mode = 0666'
 
   - name: ensure timezone is set in fpm php.ini
     lineinfile:
+      sudo: yes
       dest: /etc/php/7.0/fpm/php.ini
       regexp: 'date.timezone ='
       line: 'date.timezone = {{ server.timezone }}'

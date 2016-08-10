@@ -15,15 +15,28 @@
   - name: Add H5BP Config
     copy: src=h5bp dest=/etc/nginx owner=root group=root
 
-  - name: Symlink default site
+  - name: Disable Default Config
+    sudo: yes
     file:
-      src: default.tpl
-      dest: /etc/nginx/sites-available/default
-      owner: root
-      group: root
+      dest: /etc/nginx/sites-enabled/default
+      state: absent
+    notify: restart nginx
+
+  - name: Symlink default site
+    sudo: yes
+    template: src=default.j2 dest=/etc/nginx/sites-available/default
+    notify: restart nginx
+
+  - name: Enable SFH Site Config
+    sudo: yes
+    file:
+      src: /etc/nginx/sites-available/default
+      dest: /etc/nginx/sites-enabled/default
+      state: link
     notify: restart nginx
 
   - name: Set Nginx PID
+    sudo: yes
     lineinfile:
       dest: /etc/nginx/nginx.conf
       regexp: "^pid"
@@ -32,6 +45,7 @@
     notify: restart nginx
 
   - name: Set Nginx user
+    sudo: yes
     lineinfile:
       dest: /etc/nginx/nginx.conf
       regexp: "^user"
