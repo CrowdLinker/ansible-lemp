@@ -1,0 +1,30 @@
+---
+  server:
+    install: '1'
+    packages: [ fail2ban, git, vim, htop, acl, ufw]
+
+  nginx:
+    install: '1'
+    docroot: '/usr/share/nginx/html'
+    servername: 'localhost'
+
+  php:
+    install: '1'
+    ppa: php
+    packages: [ php7.0-cli, php7.0-common, php7.0-curl, php7.0-dev, php7.0-gd, php7.0-mbstring, php7.0-mcrypt, php7.0-mysql, php7.0-xml, php7.0-xmlrpc, php7.0-memcached]
+
+
+  mysql:
+      install: '1'
+      root_password: $6$w6YOgLumhUZbHR3$LeQS3dVrQKVelmFFEn6OGE0YwsewFS2BWvZsiVFaeq9SQbs2IoMYF.mE5sSrB6kPpmu7UTQb90F1br3MVXFHj0
+      database: db
+      user: crowdlinker
+      password: $6$w6YOgLumhUZbHR3$LeQS3dVrQKVelmFFEn6OGE0YwsewFS2BWvZsiVFaeq9SQbs2IoMYF.mE5sSrB6kPpmu7UTQb90F1br3MVXFHj0
+      dump: ''
+
+  user:
+    username: 'crowdlinker'
+    password: $6$w6YOgLumhUZbHR3$LeQS3dVrQKVelmFFEn6OGE0YwsewFS2BWvZsiVFaeq9SQbs2IoMYF.mE5sSrB6kPpmu7UTQb90F1br3MVXFHj0
+
+  composer:
+    install: '1'

@@ -1,0 +1,6 @@
+---
+  - name: ensure timezone is set in cli php.ini
+    lineinfile:
+        dest: /etc/php/7.0/cli/php.ini
+        regexp: 'date.timezone ='
+        line: 'date.timezone = {{ server.timezone }}'

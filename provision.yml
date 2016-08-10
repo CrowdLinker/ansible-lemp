@@ -1,0 +1,17 @@
+---
+  - hosts: all
+    user: root
+    gather_facts: false
+    vars_files:
+      - vars/all.yml
+    roles:
+      - common
+      - node
+      - ufw
+      - nginx
+      - php
+      - mysql
+      - composer
+      - ssh
+      - user
+      - acl

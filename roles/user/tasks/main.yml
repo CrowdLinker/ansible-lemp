@@ -1,0 +1,28 @@
+---
+  - name: Ensure sudo group is present
+    group:
+      name: sudo
+      state: present
+
+  # - name: Ensure sudo group has sudo privileges
+  #   lineinfile:
+  #     dest: /etc/sudoers
+  #     state: present
+  #     regexp: "^%sudo"
+  #     line: "%sudo ALL=(ALL:ALL) ALL"
+  #     validate: "/usr/bin/visudo -cf %s"
+
+  - name: Ensure www-data group is present
+    group:
+      name: www-data
+      state: present
+
+  - name: Create default user
+    user:
+      name: "{{ user.username }}"
+      groups: sudo,www-data
+      password: "{{ user.password }}"
+      shell: /bin/bash
+      update_password: always
+      state: present
+      append: yes

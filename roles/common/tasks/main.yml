@@ -1,0 +1,18 @@
+---
+  - name: Setup Python
+    raw: test -e /usr/bin/python || (apt -y update && apt install -y python-minimal)
+
+  - name: Update apt
+    apt: update_cache=yes
+
+  - name: Install System Packages
+    apt: pkg={{ item }} state=latest
+    with_items:
+      - curl
+      - wget
+      - python-software-properties
+
+  - name: Install Extra Packages
+    apt: pkg={{ item }} state=latest update_cache=yes
+    with_items: "{{ server.packages }}"
+    when: server.packages is defined

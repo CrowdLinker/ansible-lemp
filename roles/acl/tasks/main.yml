@@ -1,0 +1,22 @@
+---
+  - name: Permission for www-data
+    acl:
+      name: /usr/share/nginx/html
+      entity: www-data
+      etype: group
+      permissions: rwx
+
+  - name: Setup ACL
+    acl:
+      name: /usr/share/nginx/html
+      entity: "{{ user.username }}"
+      etype: user
+      permissions: rwx
+      default: yes
+      state: present
+
+  - name: Folder permissions
+    raw: chgrp -R www-data /usr/share/nginx/html
+
+  - name: Folder write permissions
+    raw: chmod -R g+s /var/www
